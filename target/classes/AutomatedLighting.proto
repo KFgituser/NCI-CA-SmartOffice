@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package smartoffice;
+
+// Automated Lighting Service
+service AutomatedLighting {
+  rpc ControlLights(LightRequest) returns (LightResponse);
+  rpc BulkLightUpdate(stream LightRequest) returns (LightSummaryResponse);
+}
+
+message LightRequest {
+  string room_id = 1;
+  bool occupancy = 2;
+}
+
+message LightResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message LightSummaryResponse {
+  int32 rooms_updated = 1;
+  string summary_message = 2;
+}
