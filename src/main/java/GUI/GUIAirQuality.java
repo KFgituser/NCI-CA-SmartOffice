@@ -5,6 +5,9 @@
 package GUI;
 
 import javax.swing.JComboBox;
+import smartoffice.AirQualityOuterClass.AirQualityRequest;
+import smartoffice.AirQualityOuterClass.AirQualityResponse;
+import smartoffice.AirQualityGrpc;
 
 /**
  *
@@ -68,7 +71,7 @@ public class GUIAirQuality extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Air Quality");
 
         jButton1.setText("Close");
@@ -87,7 +90,7 @@ public class GUIAirQuality extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("pm 2_5:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("choose a room");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Room 1", "Room 2", "Room 3", "Room 4", "Room 5" }));
@@ -97,9 +100,20 @@ public class GUIAirQuality extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton2.setText("Okay");
 
         jButton3.setText("Request");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,6 +195,28 @@ public class GUIAirQuality extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose(); // Closes the current window
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         // Get selected room
+    String room = jComboBox1.getSelectedItem().toString();
+
+    // Build request
+    AirQualityRequest request = AirQualityRequest.newBuilder()
+            .setRoomId(room)
+            .build();
+
+    // Call gRPC service
+    AirQualityResponse response = GUISmartOffice.getAirStub().getAirQuality(request);
+
+    // Fill the fields
+    jTextField1.setText(String.valueOf(response.getTemperature()));
+    jTextField2.setText(String.valueOf(response.getHumidity()));
+    jTextField3.setText(String.valueOf(response.getPm25()));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     
     public GUIAirQuality() {
         initComponents();

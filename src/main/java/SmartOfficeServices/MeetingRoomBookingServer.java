@@ -28,13 +28,15 @@ import java.util.logging.Logger;
 public class MeetingRoomBookingServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        
         int port = 50053;
         Server server = ServerBuilder.forPort(port)
-            .addService(ServerInterceptors.intercept(new BookingServiceImpl(), new ApiKeyInterceptor()))
+            .addService(new BookingServiceImpl())
+                
             .build();
-
+        
         ServiceAdvertiser.register("RoomBookingService", port, "_grpc._tcp.local.");
-        System.out.println("✅ Meeting Room Booking Server running on port " + port);
+        System.out.println("Meeting Room Booking Server running on port " + port);
         server.start();
         server.awaitTermination();
     }
@@ -43,20 +45,26 @@ public class MeetingRoomBookingServer {
         //Data logging
         private static final Logger logger = Logger.getLogger(BookingServiceImpl.class.getName());
 
-    @Override
+     @Override
     public void bookRoom(BookingRequest request, StreamObserver<BookingResponse> responseObserver) {
-        
-        logger.info("bookRoom called by user " + request.getUserId() + ", room = " + request.getRoomId());
+        String room = request.getRoomId();
+        String status = "Unavailable";
+        String code = "N/A";
+
+        if (room.equalsIgnoreCase("Room 1")) {
+            status = "Confirmed";
+            code = "R1-2025X";
+        }
 
         BookingResponse response = BookingResponse.newBuilder()
-            .setSuccess(true)
-            .setMessage("Room booked for " + request.getUserId())
+            .setConfirmationCode(code)
+            .setStatus(status)
             .build();
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
-
+    
     @Override
     public void cancelBooking(CancelRequest request, StreamObserver<CancelResponse> responseObserver) {
         logger.info("cancelBooking called by user " + request.getUserId() + ", room = " + request.getRoomId());

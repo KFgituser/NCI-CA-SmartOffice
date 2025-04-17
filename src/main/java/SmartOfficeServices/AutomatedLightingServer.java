@@ -28,7 +28,7 @@ public class AutomatedLightingServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         int port = 50052;
         Server server = ServerBuilder.forPort(port)
-            .addService(ServerInterceptors.intercept(new LightingServiceImpl(), new ApiKeyInterceptor()))
+            .addService(new LightingServiceImpl())
             .build();
 
         ServiceAdvertiser.register("LightingService", port, "_grpc._tcp.local.");
@@ -42,21 +42,26 @@ public class AutomatedLightingServer {
         //Data logging
         private static final Logger logger = Logger.getLogger(LightingServiceImpl.class.getName());
 
-    @Override
-    public void controlLights(LightRequest request, StreamObserver<LightResponse> responseObserver) {
-        
-        logger.info("controlLights called: room_id" + request.getRoomId() + ", occupancy = " + request.getOccupancy());
+    public void getLightingStatus(LightRequest request, StreamObserver<LightResponse> responseObserver) {
+        String room = request.getRoomId();
+        String level = "Medium";
+        String mode = "Auto";
 
-        boolean status = request.getOccupancy();
-        String message = status ? "Lights ON" : "Lights OFF";
+        if (room.equalsIgnoreCase("Room 1")) {
+            level = "Low";
+            mode = "Manual";
+        } else if (room.equalsIgnoreCase("Room 2")) {
+            level = "High";
+            mode = "Auto";
+        }
 
         LightResponse response = LightResponse.newBuilder()
-            .setSuccess(true)
-            .setMessage(message)
+            .setLightLevel(level)
+            .setMode(mode)
             .build();
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
-}
+    }
 }

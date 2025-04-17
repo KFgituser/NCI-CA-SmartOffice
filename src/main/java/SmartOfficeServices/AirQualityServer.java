@@ -28,7 +28,8 @@ public class AirQualityServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         int port = 50051;
         Server server = ServerBuilder.forPort(port)
-            .addService(ServerInterceptors.intercept(new AirQualityServiceImpl(), new ApiKeyInterceptor()))
+            .addService(new AirQualityServiceImpl())
+
             .build();
 
         ServiceAdvertiser.register("AirQualityService", port, "_grpc._tcp.local.");
@@ -44,16 +45,30 @@ public class AirQualityServer {
 
         public void getAirQuality(AirQualityRequest request, StreamObserver<AirQualityResponse> responseObserver) {
             logger.info("getAirQuality called. roomId = " + request.getRoomId());
+               
+            String room = request.getRoomId();
+            String temp = "20";
+            String humidity = "50";
+            String pm25 = "12";
+
+            if (room.equalsIgnoreCase("Room 1")) {
+                temp = "16";
+                humidity = "23";
+                pm25 = "8";
+            } else if (room.equalsIgnoreCase("Room 2")) {
+                temp = "19";
+                humidity = "40";
+                pm25 = "10";
+            }
 
             AirQualityResponse response = AirQualityResponse.newBuilder()
-                .setRoomId(request.getRoomId())
-                .setTemperature(23.5f)
-                .setHumidity(45.0f)
-                .setPm25(12.3f)
+                .setTemperature(Float.parseFloat(temp))
+                .setHumidity(Float.parseFloat(humidity))
+                .setPm25(Float.parseFloat(pm25))
                 .build();
 
             responseObserver.onNext(response);
             responseObserver.onCompleted();
-        }
+         }
     }
 }

@@ -32,10 +32,16 @@ public final class AutomatedLightingOuterClass {
         getRoomIdBytes();
 
     /**
-     * <code>bool occupancy = 2;</code>
-     * @return The occupancy.
+     * <code>string mode = 2;</code>
+     * @return The mode.
      */
-    boolean getOccupancy();
+    java.lang.String getMode();
+    /**
+     * <code>string mode = 2;</code>
+     * @return The bytes for mode.
+     */
+    com.google.protobuf.ByteString
+        getModeBytes();
   }
   /**
    * Protobuf type {@code smartoffice.LightRequest}
@@ -51,6 +57,7 @@ public final class AutomatedLightingOuterClass {
     }
     private LightRequest() {
       roomId_ = "";
+      mode_ = "";
     }
 
     @java.lang.Override
@@ -112,15 +119,43 @@ public final class AutomatedLightingOuterClass {
       }
     }
 
-    public static final int OCCUPANCY_FIELD_NUMBER = 2;
-    private boolean occupancy_ = false;
+    public static final int MODE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object mode_ = "";
     /**
-     * <code>bool occupancy = 2;</code>
-     * @return The occupancy.
+     * <code>string mode = 2;</code>
+     * @return The mode.
      */
     @java.lang.Override
-    public boolean getOccupancy() {
-      return occupancy_;
+    public java.lang.String getMode() {
+      java.lang.Object ref = mode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string mode = 2;</code>
+     * @return The bytes for mode.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getModeBytes() {
+      java.lang.Object ref = mode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -140,8 +175,8 @@ public final class AutomatedLightingOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(roomId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, roomId_);
       }
-      if (occupancy_ != false) {
-        output.writeBool(2, occupancy_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mode_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, mode_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -155,9 +190,8 @@ public final class AutomatedLightingOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(roomId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, roomId_);
       }
-      if (occupancy_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, occupancy_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mode_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, mode_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -176,8 +210,8 @@ public final class AutomatedLightingOuterClass {
 
       if (!getRoomId()
           .equals(other.getRoomId())) return false;
-      if (getOccupancy()
-          != other.getOccupancy()) return false;
+      if (!getMode()
+          .equals(other.getMode())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -191,9 +225,8 @@ public final class AutomatedLightingOuterClass {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ROOM_ID_FIELD_NUMBER;
       hash = (53 * hash) + getRoomId().hashCode();
-      hash = (37 * hash) + OCCUPANCY_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getOccupancy());
+      hash = (37 * hash) + MODE_FIELD_NUMBER;
+      hash = (53 * hash) + getMode().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -326,7 +359,7 @@ public final class AutomatedLightingOuterClass {
         super.clear();
         bitField0_ = 0;
         roomId_ = "";
-        occupancy_ = false;
+        mode_ = "";
         return this;
       }
 
@@ -364,7 +397,7 @@ public final class AutomatedLightingOuterClass {
           result.roomId_ = roomId_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.occupancy_ = occupancy_;
+          result.mode_ = mode_;
         }
       }
 
@@ -417,8 +450,10 @@ public final class AutomatedLightingOuterClass {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (other.getOccupancy() != false) {
-          setOccupancy(other.getOccupancy());
+        if (!other.getMode().isEmpty()) {
+          mode_ = other.mode_;
+          bitField0_ |= 0x00000002;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -451,11 +486,11 @@ public final class AutomatedLightingOuterClass {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
-              case 16: {
-                occupancy_ = input.readBool();
+              case 18: {
+                mode_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 16
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -545,34 +580,74 @@ public final class AutomatedLightingOuterClass {
         return this;
       }
 
-      private boolean occupancy_ ;
+      private java.lang.Object mode_ = "";
       /**
-       * <code>bool occupancy = 2;</code>
-       * @return The occupancy.
+       * <code>string mode = 2;</code>
+       * @return The mode.
        */
-      @java.lang.Override
-      public boolean getOccupancy() {
-        return occupancy_;
+      public java.lang.String getMode() {
+        java.lang.Object ref = mode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>bool occupancy = 2;</code>
-       * @param value The occupancy to set.
+       * <code>string mode = 2;</code>
+       * @return The bytes for mode.
+       */
+      public com.google.protobuf.ByteString
+          getModeBytes() {
+        java.lang.Object ref = mode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string mode = 2;</code>
+       * @param value The mode to set.
        * @return This builder for chaining.
        */
-      public Builder setOccupancy(boolean value) {
-
-        occupancy_ = value;
+      public Builder setMode(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        mode_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>bool occupancy = 2;</code>
+       * <code>string mode = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearOccupancy() {
+      public Builder clearMode() {
+        mode_ = getDefaultInstance().getMode();
         bitField0_ = (bitField0_ & ~0x00000002);
-        occupancy_ = false;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mode = 2;</code>
+       * @param value The bytes for mode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setModeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        mode_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -651,16 +726,28 @@ public final class AutomatedLightingOuterClass {
     boolean getSuccess();
 
     /**
-     * <code>string message = 2;</code>
-     * @return The message.
+     * <code>string mode = 2;</code>
+     * @return The mode.
      */
-    java.lang.String getMessage();
+    java.lang.String getMode();
     /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
+     * <code>string mode = 2;</code>
+     * @return The bytes for mode.
      */
     com.google.protobuf.ByteString
-        getMessageBytes();
+        getModeBytes();
+
+    /**
+     * <code>string lightLevel = 3;</code>
+     * @return The lightLevel.
+     */
+    java.lang.String getLightLevel();
+    /**
+     * <code>string lightLevel = 3;</code>
+     * @return The bytes for lightLevel.
+     */
+    com.google.protobuf.ByteString
+        getLightLevelBytes();
   }
   /**
    * Protobuf type {@code smartoffice.LightResponse}
@@ -675,7 +762,8 @@ public final class AutomatedLightingOuterClass {
       super(builder);
     }
     private LightResponse() {
-      message_ = "";
+      mode_ = "";
+      lightLevel_ = "";
     }
 
     @java.lang.Override
@@ -709,39 +797,78 @@ public final class AutomatedLightingOuterClass {
       return success_;
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 2;
+    public static final int MODE_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object message_ = "";
+    private volatile java.lang.Object mode_ = "";
     /**
-     * <code>string message = 2;</code>
-     * @return The message.
+     * <code>string mode = 2;</code>
+     * @return The mode.
      */
     @java.lang.Override
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
+    public java.lang.String getMode() {
+      java.lang.Object ref = mode_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        message_ = s;
+        mode_ = s;
         return s;
       }
     }
     /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
+     * <code>string mode = 2;</code>
+     * @return The bytes for mode.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
+        getModeBytes() {
+      java.lang.Object ref = mode_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        message_ = b;
+        mode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LIGHTLEVEL_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object lightLevel_ = "";
+    /**
+     * <code>string lightLevel = 3;</code>
+     * @return The lightLevel.
+     */
+    @java.lang.Override
+    public java.lang.String getLightLevel() {
+      java.lang.Object ref = lightLevel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        lightLevel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string lightLevel = 3;</code>
+     * @return The bytes for lightLevel.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getLightLevelBytes() {
+      java.lang.Object ref = lightLevel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        lightLevel_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -765,8 +892,11 @@ public final class AutomatedLightingOuterClass {
       if (success_ != false) {
         output.writeBool(1, success_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mode_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, mode_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(lightLevel_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, lightLevel_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -781,8 +911,11 @@ public final class AutomatedLightingOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, success_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mode_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, mode_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(lightLevel_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, lightLevel_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -801,8 +934,10 @@ public final class AutomatedLightingOuterClass {
 
       if (getSuccess()
           != other.getSuccess()) return false;
-      if (!getMessage()
-          .equals(other.getMessage())) return false;
+      if (!getMode()
+          .equals(other.getMode())) return false;
+      if (!getLightLevel()
+          .equals(other.getLightLevel())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -817,8 +952,10 @@ public final class AutomatedLightingOuterClass {
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + MODE_FIELD_NUMBER;
+      hash = (53 * hash) + getMode().hashCode();
+      hash = (37 * hash) + LIGHTLEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLightLevel().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -951,7 +1088,8 @@ public final class AutomatedLightingOuterClass {
         super.clear();
         bitField0_ = 0;
         success_ = false;
-        message_ = "";
+        mode_ = "";
+        lightLevel_ = "";
         return this;
       }
 
@@ -989,7 +1127,10 @@ public final class AutomatedLightingOuterClass {
           result.success_ = success_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.message_ = message_;
+          result.mode_ = mode_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.lightLevel_ = lightLevel_;
         }
       }
 
@@ -1040,9 +1181,14 @@ public final class AutomatedLightingOuterClass {
         if (other.getSuccess() != false) {
           setSuccess(other.getSuccess());
         }
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
+        if (!other.getMode().isEmpty()) {
+          mode_ = other.mode_;
           bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getLightLevel().isEmpty()) {
+          lightLevel_ = other.lightLevel_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -1077,10 +1223,15 @@ public final class AutomatedLightingOuterClass {
                 break;
               } // case 8
               case 18: {
-                message_ = input.readStringRequireUtf8();
+                mode_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                lightLevel_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1130,74 +1281,146 @@ public final class AutomatedLightingOuterClass {
         return this;
       }
 
-      private java.lang.Object message_ = "";
+      private java.lang.Object mode_ = "";
       /**
-       * <code>string message = 2;</code>
-       * @return The message.
+       * <code>string mode = 2;</code>
+       * @return The mode.
        */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
+      public java.lang.String getMode() {
+        java.lang.Object ref = mode_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          message_ = s;
+          mode_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
-       * @return The bytes for message.
+       * <code>string mode = 2;</code>
+       * @return The bytes for mode.
        */
       public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
+          getModeBytes() {
+        java.lang.Object ref = mode_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          message_ = b;
+          mode_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
-       * @param value The message to set.
+       * <code>string mode = 2;</code>
+       * @param value The mode to set.
        * @return This builder for chaining.
        */
-      public Builder setMessage(
+      public Builder setMode(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        message_ = value;
+        mode_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string mode = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMessage() {
-        message_ = getDefaultInstance().getMessage();
+      public Builder clearMode() {
+        mode_ = getDefaultInstance().getMode();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
-       * @param value The bytes for message to set.
+       * <code>string mode = 2;</code>
+       * @param value The bytes for mode to set.
        * @return This builder for chaining.
        */
-      public Builder setMessageBytes(
+      public Builder setModeBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        message_ = value;
+        mode_ = value;
         bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object lightLevel_ = "";
+      /**
+       * <code>string lightLevel = 3;</code>
+       * @return The lightLevel.
+       */
+      public java.lang.String getLightLevel() {
+        java.lang.Object ref = lightLevel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          lightLevel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string lightLevel = 3;</code>
+       * @return The bytes for lightLevel.
+       */
+      public com.google.protobuf.ByteString
+          getLightLevelBytes() {
+        java.lang.Object ref = lightLevel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          lightLevel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string lightLevel = 3;</code>
+       * @param value The lightLevel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLightLevel(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        lightLevel_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string lightLevel = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLightLevel() {
+        lightLevel_ = getDefaultInstance().getLightLevel();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string lightLevel = 3;</code>
+       * @param value The bytes for lightLevel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLightLevelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        lightLevel_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1913,16 +2136,17 @@ public final class AutomatedLightingOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\027AutomatedLighting.proto\022\013smartoffice\"2" +
-      "\n\014LightRequest\022\017\n\007room_id\030\001 \001(\t\022\021\n\toccup" +
-      "ancy\030\002 \001(\010\"1\n\rLightResponse\022\017\n\007success\030\001" +
-      " \001(\010\022\017\n\007message\030\002 \001(\t\"F\n\024LightSummaryRes" +
-      "ponse\022\025\n\rrooms_updated\030\001 \001(\005\022\027\n\017summary_" +
-      "message\030\002 \001(\t2\256\001\n\021AutomatedLighting\022F\n\rC" +
-      "ontrolLights\022\031.smartoffice.LightRequest\032" +
-      "\032.smartoffice.LightResponse\022Q\n\017BulkLight" +
-      "Update\022\031.smartoffice.LightRequest\032!.smar" +
-      "toffice.LightSummaryResponse(\001b\006proto3"
+      "\n\027AutomatedLighting.proto\022\013smartoffice\"-" +
+      "\n\014LightRequest\022\017\n\007room_id\030\001 \001(\t\022\014\n\004mode\030" +
+      "\002 \001(\t\"B\n\rLightResponse\022\017\n\007success\030\001 \001(\010\022" +
+      "\014\n\004mode\030\002 \001(\t\022\022\n\nlightLevel\030\003 \001(\t\"F\n\024Lig" +
+      "htSummaryResponse\022\025\n\rrooms_updated\030\001 \001(\005" +
+      "\022\027\n\017summary_message\030\002 \001(\t2\256\001\n\021AutomatedL" +
+      "ighting\022F\n\rControlLights\022\031.smartoffice.L" +
+      "ightRequest\032\032.smartoffice.LightResponse\022" +
+      "Q\n\017BulkLightUpdate\022\031.smartoffice.LightRe" +
+      "quest\032!.smartoffice.LightSummaryResponse" +
+      "(\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1933,13 +2157,13 @@ public final class AutomatedLightingOuterClass {
     internal_static_smartoffice_LightRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_smartoffice_LightRequest_descriptor,
-        new java.lang.String[] { "RoomId", "Occupancy", });
+        new java.lang.String[] { "RoomId", "Mode", });
     internal_static_smartoffice_LightResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_smartoffice_LightResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_smartoffice_LightResponse_descriptor,
-        new java.lang.String[] { "Success", "Message", });
+        new java.lang.String[] { "Success", "Mode", "LightLevel", });
     internal_static_smartoffice_LightSummaryResponse_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_smartoffice_LightSummaryResponse_fieldAccessorTable = new

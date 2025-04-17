@@ -874,16 +874,28 @@ public final class MeetingRoomBookingOuterClass {
     boolean getSuccess();
 
     /**
-     * <code>string message = 2;</code>
-     * @return The message.
+     * <code>string status = 2;</code>
+     * @return The status.
      */
-    java.lang.String getMessage();
+    java.lang.String getStatus();
     /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
+     * <code>string status = 2;</code>
+     * @return The bytes for status.
      */
     com.google.protobuf.ByteString
-        getMessageBytes();
+        getStatusBytes();
+
+    /**
+     * <code>string confirmationCode = 3;</code>
+     * @return The confirmationCode.
+     */
+    java.lang.String getConfirmationCode();
+    /**
+     * <code>string confirmationCode = 3;</code>
+     * @return The bytes for confirmationCode.
+     */
+    com.google.protobuf.ByteString
+        getConfirmationCodeBytes();
   }
   /**
    * Protobuf type {@code smartoffice.BookingResponse}
@@ -898,7 +910,8 @@ public final class MeetingRoomBookingOuterClass {
       super(builder);
     }
     private BookingResponse() {
-      message_ = "";
+      status_ = "";
+      confirmationCode_ = "";
     }
 
     @java.lang.Override
@@ -932,39 +945,78 @@ public final class MeetingRoomBookingOuterClass {
       return success_;
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 2;
+    public static final int STATUS_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object message_ = "";
+    private volatile java.lang.Object status_ = "";
     /**
-     * <code>string message = 2;</code>
-     * @return The message.
+     * <code>string status = 2;</code>
+     * @return The status.
      */
     @java.lang.Override
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
+    public java.lang.String getStatus() {
+      java.lang.Object ref = status_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        message_ = s;
+        status_ = s;
         return s;
       }
     }
     /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
+     * <code>string status = 2;</code>
+     * @return The bytes for status.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
+        getStatusBytes() {
+      java.lang.Object ref = status_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        message_ = b;
+        status_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONFIRMATIONCODE_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object confirmationCode_ = "";
+    /**
+     * <code>string confirmationCode = 3;</code>
+     * @return The confirmationCode.
+     */
+    @java.lang.Override
+    public java.lang.String getConfirmationCode() {
+      java.lang.Object ref = confirmationCode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        confirmationCode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string confirmationCode = 3;</code>
+     * @return The bytes for confirmationCode.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getConfirmationCodeBytes() {
+      java.lang.Object ref = confirmationCode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        confirmationCode_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -988,8 +1040,11 @@ public final class MeetingRoomBookingOuterClass {
       if (success_ != false) {
         output.writeBool(1, success_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, status_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(confirmationCode_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, confirmationCode_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1004,8 +1059,11 @@ public final class MeetingRoomBookingOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, success_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, status_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(confirmationCode_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, confirmationCode_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1024,8 +1082,10 @@ public final class MeetingRoomBookingOuterClass {
 
       if (getSuccess()
           != other.getSuccess()) return false;
-      if (!getMessage()
-          .equals(other.getMessage())) return false;
+      if (!getStatus()
+          .equals(other.getStatus())) return false;
+      if (!getConfirmationCode()
+          .equals(other.getConfirmationCode())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1040,8 +1100,10 @@ public final class MeetingRoomBookingOuterClass {
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus().hashCode();
+      hash = (37 * hash) + CONFIRMATIONCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getConfirmationCode().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1174,7 +1236,8 @@ public final class MeetingRoomBookingOuterClass {
         super.clear();
         bitField0_ = 0;
         success_ = false;
-        message_ = "";
+        status_ = "";
+        confirmationCode_ = "";
         return this;
       }
 
@@ -1212,7 +1275,10 @@ public final class MeetingRoomBookingOuterClass {
           result.success_ = success_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.message_ = message_;
+          result.status_ = status_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.confirmationCode_ = confirmationCode_;
         }
       }
 
@@ -1263,9 +1329,14 @@ public final class MeetingRoomBookingOuterClass {
         if (other.getSuccess() != false) {
           setSuccess(other.getSuccess());
         }
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
+        if (!other.getStatus().isEmpty()) {
+          status_ = other.status_;
           bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getConfirmationCode().isEmpty()) {
+          confirmationCode_ = other.confirmationCode_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -1300,10 +1371,15 @@ public final class MeetingRoomBookingOuterClass {
                 break;
               } // case 8
               case 18: {
-                message_ = input.readStringRequireUtf8();
+                status_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                confirmationCode_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1353,74 +1429,146 @@ public final class MeetingRoomBookingOuterClass {
         return this;
       }
 
-      private java.lang.Object message_ = "";
+      private java.lang.Object status_ = "";
       /**
-       * <code>string message = 2;</code>
-       * @return The message.
+       * <code>string status = 2;</code>
+       * @return The status.
        */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
+      public java.lang.String getStatus() {
+        java.lang.Object ref = status_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          message_ = s;
+          status_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
-       * @return The bytes for message.
+       * <code>string status = 2;</code>
+       * @return The bytes for status.
        */
       public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
+          getStatusBytes() {
+        java.lang.Object ref = status_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          message_ = b;
+          status_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
-       * @param value The message to set.
+       * <code>string status = 2;</code>
+       * @param value The status to set.
        * @return This builder for chaining.
        */
-      public Builder setMessage(
+      public Builder setStatus(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        message_ = value;
+        status_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string status = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMessage() {
-        message_ = getDefaultInstance().getMessage();
+      public Builder clearStatus() {
+        status_ = getDefaultInstance().getStatus();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
-       * @param value The bytes for message to set.
+       * <code>string status = 2;</code>
+       * @param value The bytes for status to set.
        * @return This builder for chaining.
        */
-      public Builder setMessageBytes(
+      public Builder setStatusBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        message_ = value;
+        status_ = value;
         bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object confirmationCode_ = "";
+      /**
+       * <code>string confirmationCode = 3;</code>
+       * @return The confirmationCode.
+       */
+      public java.lang.String getConfirmationCode() {
+        java.lang.Object ref = confirmationCode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          confirmationCode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string confirmationCode = 3;</code>
+       * @return The bytes for confirmationCode.
+       */
+      public com.google.protobuf.ByteString
+          getConfirmationCodeBytes() {
+        java.lang.Object ref = confirmationCode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          confirmationCode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string confirmationCode = 3;</code>
+       * @param value The confirmationCode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setConfirmationCode(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        confirmationCode_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string confirmationCode = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearConfirmationCode() {
+        confirmationCode_ = getDefaultInstance().getConfirmationCode();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string confirmationCode = 3;</code>
+       * @param value The bytes for confirmationCode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setConfirmationCodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        confirmationCode_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2844,18 +2992,18 @@ public final class MeetingRoomBookingOuterClass {
     java.lang.String[] descriptorData = {
       "\n\030MeetingRoomBooking.proto\022\013smartoffice\"" +
       "E\n\016BookingRequest\022\017\n\007room_id\030\001 \001(\t\022\017\n\007us" +
-      "er_id\030\002 \001(\t\022\021\n\ttime_slot\030\003 \001(\t\"3\n\017Bookin" +
-      "gResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 " +
-      "\001(\t\"1\n\rCancelRequest\022\017\n\007room_id\030\001 \001(\t\022\017\n" +
-      "\007user_id\030\002 \001(\t\"2\n\016CancelResponse\022\017\n\007succ" +
-      "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t2\367\001\n\022MeetingRo" +
-      "omBooking\022E\n\010BookRoom\022\033.smartoffice.Book" +
-      "ingRequest\032\034.smartoffice.BookingResponse" +
-      "\022H\n\rCancelBooking\022\032.smartoffice.CancelRe" +
-      "quest\032\033.smartoffice.CancelResponse\022P\n\017Li" +
-      "veRoomBooking\022\033.smartoffice.BookingReque" +
-      "st\032\034.smartoffice.BookingResponse(\0010\001b\006pr" +
-      "oto3"
+      "er_id\030\002 \001(\t\022\021\n\ttime_slot\030\003 \001(\t\"L\n\017Bookin" +
+      "gResponse\022\017\n\007success\030\001 \001(\010\022\016\n\006status\030\002 \001" +
+      "(\t\022\030\n\020confirmationCode\030\003 \001(\t\"1\n\rCancelRe" +
+      "quest\022\017\n\007room_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\"" +
+      "2\n\016CancelResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007me" +
+      "ssage\030\002 \001(\t2\367\001\n\022MeetingRoomBooking\022E\n\010Bo" +
+      "okRoom\022\033.smartoffice.BookingRequest\032\034.sm" +
+      "artoffice.BookingResponse\022H\n\rCancelBooki" +
+      "ng\022\032.smartoffice.CancelRequest\032\033.smartof" +
+      "fice.CancelResponse\022P\n\017LiveRoomBooking\022\033" +
+      ".smartoffice.BookingRequest\032\034.smartoffic" +
+      "e.BookingResponse(\0010\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2872,7 +3020,7 @@ public final class MeetingRoomBookingOuterClass {
     internal_static_smartoffice_BookingResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_smartoffice_BookingResponse_descriptor,
-        new java.lang.String[] { "Success", "Message", });
+        new java.lang.String[] { "Success", "Status", "ConfirmationCode", });
     internal_static_smartoffice_CancelRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_smartoffice_CancelRequest_fieldAccessorTable = new

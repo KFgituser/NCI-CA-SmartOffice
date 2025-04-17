@@ -10,12 +10,13 @@ service AutomatedLighting {
 
 message LightRequest {
   string room_id = 1;
-  bool occupancy = 2;
+  string mode = 2;
 }
 
 message LightResponse {
   bool success = 1;
-  string message = 2;
+  string mode = 2;
+  string lightLevel = 3;
 }
 
 message LightSummaryResponse {

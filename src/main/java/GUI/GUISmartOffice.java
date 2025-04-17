@@ -1,5 +1,9 @@
 package GUI;
 
+import smartoffice.AirQualityGrpc;
+import smartoffice.AutomatedLightingGrpc;
+import smartoffice.MeetingRoomBookingGrpc;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,6 +12,24 @@ package GUI;
 
 
 public class GUISmartOffice extends javax.swing.JFrame {
+
+    private static AirQualityGrpc.AirQualityBlockingStub airStub;
+    private static AutomatedLightingGrpc.AutomatedLightingBlockingStub lightingStub;
+    private static MeetingRoomBookingGrpc.MeetingRoomBookingBlockingStub bookingStub;
+
+    public static void setStubs(
+        AirQualityGrpc.AirQualityBlockingStub air,
+        AutomatedLightingGrpc.AutomatedLightingBlockingStub lighting,
+        MeetingRoomBookingGrpc.MeetingRoomBookingBlockingStub booking
+    ) {
+        airStub = air;
+        lightingStub = lighting;
+        bookingStub = booking;
+    }
+
+
+
+   
 
     /**
      * Creates new form GUISmartOffice
@@ -99,7 +121,17 @@ public class GUISmartOffice extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public static AirQualityGrpc.AirQualityBlockingStub getAirStub() {
+        return airStub;
+    }
+    
+    public static AutomatedLightingGrpc.AutomatedLightingBlockingStub getLightingStub() {
+        return lightingStub;
+    }
+    public static MeetingRoomBookingGrpc.MeetingRoomBookingBlockingStub getBookingStub() {
+        return bookingStub;
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Thread(() -> {
         try {

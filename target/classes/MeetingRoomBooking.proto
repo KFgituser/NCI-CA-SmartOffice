@@ -17,7 +17,8 @@ message BookingRequest {
 
 message BookingResponse {
   bool success = 1;
-  string message = 2;
+  string status = 2;
+  string confirmationCode = 3;
 }
 
 message CancelRequest {
