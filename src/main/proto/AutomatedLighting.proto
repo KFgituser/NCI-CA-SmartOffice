@@ -5,21 +5,23 @@ package smartoffice;
 // Automated Lighting Service
 service AutomatedLighting {
   rpc ControlLights(LightRequest) returns (LightResponse);
-  rpc BulkLightUpdate(stream LightRequest) returns (LightSummaryResponse);
+  rpc streamLightingControl (stream LightRequest) returns (LightSummaryResponse);
 }
 
 message LightRequest {
   string room_id = 1;
   string mode = 2;
+  string light_level = 3;
 }
 
 message LightResponse {
-  bool success = 1;
-  string mode = 2;
-  string lightLevel = 3;
+  string message = 1;
+  string mode = 2;        
+  string light_level = 3;
+
+ 
 }
 
 message LightSummaryResponse {
-  int32 rooms_updated = 1;
-  string summary_message = 2;
+  string summary = 1;
 }

@@ -1,12 +1,15 @@
 package SmartOfficeServices;
 
+
+
 //GUI
-import GUI.GUIAirQuality;
 import GUI.GUISmartOffice;
+import smartoffice.AirQualityGrpc;
+
 //grpc
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import smartoffice.AirQualityGrpc;
+
 import smartoffice.AutomatedLightingGrpc;
 import smartoffice.MeetingRoomBookingGrpc;
 //naming
@@ -15,8 +18,7 @@ import javax.jmdns.ServiceInfo;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import com.sun.net.httpserver.HttpServer;
+
 
 
 public class SmartOffice {
@@ -75,14 +77,13 @@ public class SmartOffice {
      public static void main(String[] args) throws Exception {
          
         
-         // Launch client-side SmartOffice with discovered services
+        // Launch client-side SmartOffice 
         SmartOffice clientApp = new SmartOffice();
          //launch GUI
          javax.swing.SwingUtilities.invokeLater(() -> {
-        new GUISmartOffice().setVisible(true); // launches GUI with stubs set
+        new GUISmartOffice().setVisible(true); 
         });
     }
-
 
    
 }

@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.63.0)",
+    value = "by gRPC proto compiler (version 1.58.0)",
     comments = "Source: AutomatedLighting.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AutomatedLightingGrpc {
@@ -50,34 +50,34 @@ public final class AutomatedLightingGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<smartoffice.AutomatedLightingOuterClass.LightRequest,
-      smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> getBulkLightUpdateMethod;
+      smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> getStreamLightingControlMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "BulkLightUpdate",
+      fullMethodName = SERVICE_NAME + '/' + "streamLightingControl",
       requestType = smartoffice.AutomatedLightingOuterClass.LightRequest.class,
       responseType = smartoffice.AutomatedLightingOuterClass.LightSummaryResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
   public static io.grpc.MethodDescriptor<smartoffice.AutomatedLightingOuterClass.LightRequest,
-      smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> getBulkLightUpdateMethod() {
-    io.grpc.MethodDescriptor<smartoffice.AutomatedLightingOuterClass.LightRequest, smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> getBulkLightUpdateMethod;
-    if ((getBulkLightUpdateMethod = AutomatedLightingGrpc.getBulkLightUpdateMethod) == null) {
+      smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> getStreamLightingControlMethod() {
+    io.grpc.MethodDescriptor<smartoffice.AutomatedLightingOuterClass.LightRequest, smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> getStreamLightingControlMethod;
+    if ((getStreamLightingControlMethod = AutomatedLightingGrpc.getStreamLightingControlMethod) == null) {
       synchronized (AutomatedLightingGrpc.class) {
-        if ((getBulkLightUpdateMethod = AutomatedLightingGrpc.getBulkLightUpdateMethod) == null) {
-          AutomatedLightingGrpc.getBulkLightUpdateMethod = getBulkLightUpdateMethod =
+        if ((getStreamLightingControlMethod = AutomatedLightingGrpc.getStreamLightingControlMethod) == null) {
+          AutomatedLightingGrpc.getStreamLightingControlMethod = getStreamLightingControlMethod =
               io.grpc.MethodDescriptor.<smartoffice.AutomatedLightingOuterClass.LightRequest, smartoffice.AutomatedLightingOuterClass.LightSummaryResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "BulkLightUpdate"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "streamLightingControl"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   smartoffice.AutomatedLightingOuterClass.LightRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   smartoffice.AutomatedLightingOuterClass.LightSummaryResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new AutomatedLightingMethodDescriptorSupplier("BulkLightUpdate"))
+              .setSchemaDescriptor(new AutomatedLightingMethodDescriptorSupplier("streamLightingControl"))
               .build();
         }
       }
     }
-    return getBulkLightUpdateMethod;
+    return getStreamLightingControlMethod;
   }
 
   /**
@@ -140,9 +140,9 @@ public final class AutomatedLightingGrpc {
 
     /**
      */
-    default io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightRequest> bulkLightUpdate(
+    default io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightRequest> streamLightingControl(
         io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getBulkLightUpdateMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getStreamLightingControlMethod(), responseObserver);
     }
   }
 
@@ -189,10 +189,10 @@ public final class AutomatedLightingGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightRequest> bulkLightUpdate(
+    public io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightRequest> streamLightingControl(
         io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightSummaryResponse> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-          getChannel().newCall(getBulkLightUpdateMethod(), getCallOptions()), responseObserver);
+          getChannel().newCall(getStreamLightingControlMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -252,7 +252,7 @@ public final class AutomatedLightingGrpc {
   }
 
   private static final int METHODID_CONTROL_LIGHTS = 0;
-  private static final int METHODID_BULK_LIGHT_UPDATE = 1;
+  private static final int METHODID_STREAM_LIGHTING_CONTROL = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -285,8 +285,8 @@ public final class AutomatedLightingGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_BULK_LIGHT_UPDATE:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.bulkLightUpdate(
+        case METHODID_STREAM_LIGHTING_CONTROL:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.streamLightingControl(
               (io.grpc.stub.StreamObserver<smartoffice.AutomatedLightingOuterClass.LightSummaryResponse>) responseObserver);
         default:
           throw new AssertionError();
@@ -304,12 +304,12 @@ public final class AutomatedLightingGrpc {
               smartoffice.AutomatedLightingOuterClass.LightResponse>(
                 service, METHODID_CONTROL_LIGHTS)))
         .addMethod(
-          getBulkLightUpdateMethod(),
+          getStreamLightingControlMethod(),
           io.grpc.stub.ServerCalls.asyncClientStreamingCall(
             new MethodHandlers<
               smartoffice.AutomatedLightingOuterClass.LightRequest,
               smartoffice.AutomatedLightingOuterClass.LightSummaryResponse>(
-                service, METHODID_BULK_LIGHT_UPDATE)))
+                service, METHODID_STREAM_LIGHTING_CONTROL)))
         .build();
   }
 
@@ -359,7 +359,7 @@ public final class AutomatedLightingGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new AutomatedLightingFileDescriptorSupplier())
               .addMethod(getControlLightsMethod())
-              .addMethod(getBulkLightUpdateMethod())
+              .addMethod(getStreamLightingControlMethod())
               .build();
         }
       }

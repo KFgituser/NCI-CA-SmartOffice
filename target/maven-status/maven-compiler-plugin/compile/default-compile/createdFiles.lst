@@ -10,7 +10,10 @@ smartoffice\AirQualityGrpc$AirQualityFutureStub.class
 smartoffice\MeetingRoomBookingGrpc$MeetingRoomBookingStub.class
 smartoffice\AutomatedLightingOuterClass.class
 smartoffice\AutomatedLightingGrpc$3.class
+discovery\ServiceDiscovery.class
 smartoffice\AutomatedLightingGrpc$AutomatedLightingImplBase.class
+discovery\ServiceDiscovery$1.class
+SmartOfficeServices\MeetingRoomBookingServer$BookingServiceImpl$1.class
 GUI\GUIAirQuality$3.class
 smartoffice\AutomatedLightingGrpc$MethodHandlers.class
 smartoffice\AutomatedLightingOuterClass$LightRequestOrBuilder.class
@@ -26,6 +29,7 @@ smartoffice\AirQualityOuterClass.class
 smartoffice\AutomatedLightingGrpc$AutomatedLightingFutureStub.class
 discovery\ServiceAdvertiser.class
 smartoffice\AirQualityGrpc$MethodHandlers.class
+GUI\GUILighting$5.class
 smartoffice\MeetingRoomBookingGrpc$MethodHandlers.class
 smartoffice\AirQualityGrpc$3.class
 smartoffice\MeetingRoomBookingGrpc$2.class
@@ -63,7 +67,6 @@ smartoffice\AirQualityOuterClass$AirQualityRequest$1.class
 smartoffice\AutomatedLightingOuterClass$LightResponse.class
 smartoffice\MeetingRoomBookingOuterClass.class
 SmartOfficeServices\AirQualityServer$AirQualityServiceImpl.class
-SmartOfficeServices\ServiceAdvertiser.class
 auth\ApiKeyInterceptor.class
 GUI\GUIRoomBooking$6.class
 GUI\GUISmartOffice.class
@@ -88,6 +91,7 @@ SmartOfficeServices\AutomatedLightingServer.class
 smartoffice\AirQualityOuterClass$AirQualityRequestOrBuilder.class
 smartoffice\AutomatedLightingGrpc.class
 GUI\GUIRoomBooking$5.class
+SmartOfficeServices\AutomatedLightingServer$LightingServiceImpl$1.class
 smartoffice\AirQualityOuterClass$AirQualityResponseOrBuilder.class
 GUI\GUILighting$1.class
 smartoffice\MeetingRoomBookingGrpc$MeetingRoomBookingImplBase.class
@@ -105,12 +109,10 @@ smartoffice\MeetingRoomBookingOuterClass$CancelRequestOrBuilder.class
 GUI\GUILighting$2.class
 smartoffice\MeetingRoomBookingGrpc$MeetingRoomBookingFileDescriptorSupplier.class
 smartoffice\MeetingRoomBookingOuterClass$CancelRequest$1.class
-SmartOfficeServices\ServiceDiscovery$1.class
 smartoffice\MeetingRoomBookingGrpc$MeetingRoomBookingFutureStub.class
 smartoffice\MeetingRoomBookingOuterClass$BookingRequest$1.class
 smartoffice\AutomatedLightingOuterClass$LightRequest$Builder.class
 smartoffice\MeetingRoomBookingOuterClass$CancelResponse.class
 GUI\GUIAirQuality$2.class
 smartoffice\MeetingRoomBookingOuterClass$CancelRequest.class
-SmartOfficeServices\ServiceDiscovery.class
 smartoffice\AutomatedLightingGrpc$AutomatedLightingBlockingStub.class

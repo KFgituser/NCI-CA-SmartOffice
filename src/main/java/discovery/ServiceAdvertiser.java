@@ -4,20 +4,31 @@
  */
 package discovery;
 
-import java.io.IOException;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
+import java.io.IOException;
+import java.net.InetAddress;
 
 public class ServiceAdvertiser {
 
-    public static void register(String serviceName, int port, String type) {
+    public static void register(String serviceName, int port, String serviceType) throws InterruptedException {
         try {
-            JmDNS jmdns = JmDNS.create();
-            ServiceInfo serviceInfo = ServiceInfo.create(type, serviceName, port, "Smart Office gRPC Service");
+            // Create a JmDNS instance
+            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+            System.out.println("Registration: InetAddress.getLocalHost():" + InetAddress.getLocalHost());
+            
+            // Register service with type, name, port and description
+            ServiceInfo serviceInfo = ServiceInfo.create(serviceType, serviceName, port, "gRPC SmartOffice Service");
             jmdns.registerService(serviceInfo);
-            System.out.println("Service " + serviceName + " registered with jmDNS on port " + port);
+
+            System.out.println(serviceName + " registered via JmDNS on port " + port);
+            
+            // Wait a bit
+            Thread.sleep(5000);
+        
         } catch (IOException e) {
-            System.err.println("jmDNS service registration failed: " + e.getMessage());
+            System.err.println("Failed to register service: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

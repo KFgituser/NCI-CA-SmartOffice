@@ -4,7 +4,7 @@
  */
 package SmartOfficeServices;
 
-import discovery.ServiceAdvertiser;
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerInterceptors;
@@ -15,12 +15,19 @@ import smartoffice.AutomatedLightingGrpc.AutomatedLightingImplBase;
 import smartoffice.AutomatedLightingOuterClass.LightRequest;
 import smartoffice.AutomatedLightingOuterClass.LightResponse;
 
-
+// TLS communication
+import java.io.File;
 // Auth
 import auth.ApiKeyInterceptor;
  
+// Optional service discovery if used
+import discovery.ServiceAdvertiser;
+import discovery.ServiceDiscovery;
+import java.util.logging.Level;
+
  //Logging Imports
 import java.util.logging.Logger;
+import smartoffice.AutomatedLightingOuterClass.LightSummaryResponse;
 
 
 public class AutomatedLightingServer {
@@ -28,6 +35,11 @@ public class AutomatedLightingServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         int port = 50052;
         Server server = ServerBuilder.forPort(port)
+            // TLS for secure communication
+            .useTransportSecurity(
+            new File("certs/server.crt"),
+            new File("certs/server.pem")
+        )
             .addService(new LightingServiceImpl())
             .build();
 
@@ -41,27 +53,89 @@ public class AutomatedLightingServer {
     static class LightingServiceImpl extends AutomatedLightingImplBase {
         //Data logging
         private static final Logger logger = Logger.getLogger(LightingServiceImpl.class.getName());
+        
+        
+            @Override
+            public void controlLights(LightRequest request, StreamObserver<LightResponse> responseObserver) {
+             Logger logger = Logger.getLogger(getClass().getName());
+             logger.log(Level.INFO, "toggleLights called with input: {0}", request.toString());
 
-    public void getLightingStatus(LightRequest request, StreamObserver<LightResponse> responseObserver) {
-        String room = request.getRoomId();
-        String level = "Medium";
-        String mode = "Auto";
+            if (io.grpc.Context.current().isCancelled()) {
+                logger.warning("Request was cancelled by the client.");
+                return;
+            }
 
-        if (room.equalsIgnoreCase("Room 1")) {
-            level = "Low";
-            mode = "Manual";
-        } else if (room.equalsIgnoreCase("Room 2")) {
-            level = "High";
-            mode = "Auto";
+            try {
+                 String room = request.getRoomId();
+                 String level = "Medium";
+                 String mode = "Auto";
+
+            if (room.equalsIgnoreCase("Room 1")) {
+                level = "Low";
+                mode = "Manual";
+            } else if (room.equalsIgnoreCase("Room 2")) {
+                level = "High";
+                mode = "Auto";
+            }
+                // TODO: Add actual service logic here
+
+                // Example response (placeholder)
+                LightResponse response = LightResponse.newBuilder()
+                    .setLightLevel(level)
+                    .setMode(mode)
+                    .build();
+
+                responseObserver.onNext(response);
+                responseObserver.onCompleted();
+
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Error in toggleLights: " + e.getMessage(), e);
+                responseObserver.onError(
+                    io.grpc.Status.INTERNAL
+                        .withDescription("Server error: " + e.getMessage())
+                        .withCause(e)
+                        .asRuntimeException()
+                );
+            }
         }
+        
+        public StreamObserver<LightRequest> streamLightingControl(StreamObserver<LightSummaryResponse> responseObserver) {
+            Logger logger = Logger.getLogger(getClass().getName());
 
-        LightResponse response = LightResponse.newBuilder()
-            .setLightLevel(level)
-            .setMode(mode)
-            .build();
+            return new StreamObserver<LightRequest>() {
+                StringBuilder logBuilder = new StringBuilder();
 
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
-    }
+                @Override
+                public void onNext(LightRequest request) {
+                    logBuilder.append("Room: ")
+                              .append(request.getRoomId())
+                              .append(", Mode: ")
+                              .append(request.getMode())
+                              .append(", Level: ")
+                              
+                              .append("\n");
+
+                    logger.info("Received light command: " + request.toString());
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    logger.warning("Client error during lighting control stream: " + t.getMessage());
+                }
+
+                @Override
+                public void onCompleted() {
+                    LightSummaryResponse response = LightSummaryResponse.newBuilder()
+                        .setSummary("Lighting commands received:\n" + logBuilder.toString())
+                        .build();
+
+                    responseObserver.onNext(response);
+                    responseObserver.onCompleted();
+                    logger.info("Lighting stream completed.");
+                }
+            };
+        }
+            
+           
     }
 }
